@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.huel.servlet.OrderMapper">
+	<select id="getGoodsNum" parameterType="long" resultType="long">
+		select good_num from goods where goods_id = #{goodsId} limit 1;
+	</select>
+	<!-- 库存减一 -->
+	<update id="reduceGoodsNum" parameterType="long">
+		update goods set goods_num = goods_num - 1 where goods_id = #{goodsId};
+	</update>
+
+</mapper>

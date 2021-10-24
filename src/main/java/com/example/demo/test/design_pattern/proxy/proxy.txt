@@ -1,0 +1,2 @@
+interface:com.test.designmodel.proxy.Subject
+doFirst:come from proxy.txt

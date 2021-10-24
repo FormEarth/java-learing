@@ -45,7 +45,7 @@ public class TaskManager {
 
 	void test() {
 		ExecutorService pool = Executors.newCachedThreadPool();// maximumPoolSize:Integer.MAX_VALUE,�ɴ������������߳̿��ܵ���OOM
-		// LinkedBlockingQueue,��һ���ޱ߽���������У�Ĭ����󳤶�ΪInteger.MAX_VALUE
+		// LinkedBlockingQueue,
 		ExecutorService pool1 = Executors.newSingleThreadExecutor();
 		ExecutorService pool2 = Executors.newFixedThreadPool(1);
 	}
@@ -56,28 +56,28 @@ public class TaskManager {
 	}
 	
 	void withFixedDelay() {
-		//������ɺ������ʱ��ִ���´�����
+		//
 		ScheduledExecutorService scheduled = Executors.newScheduledThreadPool(2);
 		scheduled.scheduleWithFixedDelay(new RunnableTask(), 0, 5, TimeUnit.SECONDS);
 	}
 
 	void rejectPolicy_default() {
-		//AbortPolicy Ĭ�ϵľܾ�����-���������׳�RejectedExecutionException�쳣
+		//AbortPolicy 
 		this.threadPool = new ThreadPoolExecutor(3, 3, 60L, TimeUnit.SECONDS, new ArrayBlockingQueue<>(10));
 	}
 	
 	void rejectPolicy_discard() {
-		//DiscardPolicy ������������׳��쳣
+		//DiscardPolicy 
 		this.threadPool = new ThreadPoolExecutor(3, 3, 60L, TimeUnit.SECONDS, new ArrayBlockingQueue<>(10),Executors.defaultThreadFactory(), new ThreadPoolExecutor.DiscardPolicy());
 	}
 	
 	void rejectPolicy_discardoldest() {
-		//DiscardOldestPolicy ����������������ȼ�����еģ��ٰ���������ӽ�ȥ
+		//DiscardOldestPolicy 
 		this.threadPool = new ThreadPoolExecutor(3, 3, 60L, TimeUnit.SECONDS, new ArrayBlockingQueue<>(10),Executors.defaultThreadFactory(), new ThreadPoolExecutor.DiscardOldestPolicy());
 	}
 	
 	void rejectPolicy_callerrunspolicy() {
-		//CallerRunsPolicy ���õ�ǰ�߳�ִ�б��ܾ�������,���������߳�
+		//CallerRunsPolicy 
 		this.threadPool = new ThreadPoolExecutor(3, 3, 60L, TimeUnit.SECONDS, new ArrayBlockingQueue<>(10),Executors.defaultThreadFactory(), new ThreadPoolExecutor.CallerRunsPolicy());
 	}
 

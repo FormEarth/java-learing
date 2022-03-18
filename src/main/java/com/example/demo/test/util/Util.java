@@ -16,6 +16,8 @@ import java.util.List;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
+import org.springframework.util.StringUtils;
+
 public class Util {
 
     /**
@@ -138,6 +140,10 @@ public class Util {
         return name;
     }
     
+    static boolean isEmpty(String str) {
+    	return (str == null || str.isEmpty());
+    }
+    
     /**
      * 将首字母大写
      *
@@ -145,6 +151,11 @@ public class Util {
      * @return
      */
     public static String firstUpperCase(String str) {
+    	if(isEmpty(str)) {
+    		return str;
+    	}
+    	char first = str.charAt(0);
+    	str.intern();
         String upperChar = str.substring(0, 1).toUpperCase();
         String left = str.substring(1);
         return upperChar + left;

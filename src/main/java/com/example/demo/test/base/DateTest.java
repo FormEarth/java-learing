@@ -2,6 +2,8 @@ package com.example.demo.test.base;
 
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.Date;
+
 
 public class DateTest {
 	
@@ -15,10 +17,19 @@ public class DateTest {
 		
 	}
 	
+	static void isSameDate() {
+		Date date =  new Date(2021,10,28);
+		Date date1 = new Date();
+		System.out.println(date);
+	}
+	
 	public static void main(String[] args) {
 		date();
 		int i = 01;
 		System.out.println(i);
+		
+		
+		isSameDate();
 	}
 
 }

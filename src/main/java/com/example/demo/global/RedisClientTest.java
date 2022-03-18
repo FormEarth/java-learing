@@ -40,7 +40,7 @@ public class RedisClientTest {
 		redisTemplate.setKeySerializer(new StringRedisSerializer());
 		ValueOperations<String, User> operations = redisTemplate.opsForValue();
 
-		User user = new User("jack", null, "jack@qq.com");
+		User user = new User("jack", null, "jack@qq.com",null);
 		String token = getToken();
 		operations.set("user.basic.info." + token, user);
 		// operations.set("user.basic.info." + token, user, 30, TimeUnit.MINUTES);
@@ -57,7 +57,7 @@ public class RedisClientTest {
 
 	public void add_custom() {
 
-		template.opsForValue().set("demo.user.string." + getToken(), getgUser());
+		template.opsForValue().set("demo.user.string." + getToken(), getUser());
 
 		HashOperations<String, Object, Object> operations = template.opsForHash();
 		operations.putAll("demo.user.hash." + getToken(), getMap());
@@ -75,8 +75,8 @@ public class RedisClientTest {
 		return UUID.randomUUID().toString().replaceAll("-", "").toLowerCase();
 	}
 
-	User getgUser() {
-		return new User("jack", null, "jack@qq.com");
+	User getUser() {
+		return new User("jack", null, "jack@qq.com",null);
 	}
 
 	Map<String, Object> getMap() {

@@ -12,8 +12,11 @@ import java.util.regex.Pattern;
  * @date 2019/12/24 16:30
  **/
 public class RegexTest {
+	
     //6-10位数字或字母
     private static String NumberAndLetter = "[0-9a-zA-Z]{6,10}";
+    
+    private static String SimplePassword = "[0-9a-zA-Z,_@.]{6,20}";
     //中文
     private static String CHINESE = "[\\u4e00-\\u9fa5]";
 
@@ -34,11 +37,31 @@ public class RegexTest {
         }
         return result;
     }
+    
+    static void matcher(String input){
+        String regex = "\\d{3}(123|abc){2}";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(input);
+        System.out.println(matcher.matches());
+        String find = matcher.group(1);
+        System.out.println(find);
+    }
+    
+    static void simplePassword() {
+//    	String str = "开国大典";
+    	String str = "123abc@ABC_.";
+    	boolean b = str.matches(SimplePassword);
+    	System.out.println(b);
+    }
 
     public static void main(String[] args) {
 
-        System.out.println(isMatch("hellow"));
-        System.out.println(getMatch("<div>1</div> <div>2</div> <div>3</div>", "div"));
+//        System.out.println(isMatch("hellow"));
+//        System.out.println(getMatch("<div>1</div> <div>2</div> <div>3</div>", "div"));
+//        matcher("AAA123abc123");
+        
+        simplePassword();
+        
     }
 
 }

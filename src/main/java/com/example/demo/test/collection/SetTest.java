@@ -10,23 +10,23 @@ public class SetTest {
 
     public void set(){
         //HashSet无序，添加的顺序会被打乱
-        Set<String> set = new HashSet();
+        HashSet<String> set = new HashSet<>();
         set.add("ccc");
         set.add("bbb");
         set.add("aaa");
-        set.stream().forEach(s -> System.out.println(s));
+        set.forEach(System.out::println);
         //LinkedHashSet有序，保证添加的顺序
         Set<String> linkedSet = new LinkedHashSet<>();
         linkedSet.add("ccc");
         linkedSet.add("bbb");
         linkedSet.add("aaa");
-        linkedSet.stream().forEach(s -> System.out.println(s));
+        linkedSet.forEach(System.out::println);
         //TreeSet,可以保证排序，默认为自然排序,可以指定排序规则，这里指定倒序
         TreeSet<String> treeSet = new TreeSet<>(Comparator.reverseOrder());
         treeSet.add("ccc");
         treeSet.add("bbb");
         treeSet.add("aaa");
-        treeSet.stream().forEach(s -> System.out.println(s));
+        treeSet.forEach(System.out::println);
     }
 
     public static void main(String[] args) {

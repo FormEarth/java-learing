@@ -1,10 +1,13 @@
-package com.example.demo.global;
+package com.example.demo.config.interceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.example.demo.global.MessageCode;
+import com.example.demo.global.SystemException;
 
 public class HeaderCheckInterceptor implements HandlerInterceptor {
 

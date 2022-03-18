@@ -21,7 +21,7 @@ import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandl
 import com.example.demo.entity.SystemInterface;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-@Component
+//@Component
 public class AccessControl {
 
 	private final static ObjectMapper mapper = new ObjectMapper();

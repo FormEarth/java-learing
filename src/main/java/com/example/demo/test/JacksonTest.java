@@ -3,7 +3,6 @@ package com.example.demo.test;
 import java.io.File;
 import java.io.IOException;
 
-import com.example.demo.global.MessageCode;
 import com.example.demo.global.Result;
 import com.fasterxml.jackson.databind.ObjectMapper;
 

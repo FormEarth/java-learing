@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -14,6 +16,12 @@ import com.example.demo.global.Result;
 
 @RestController
 public class TestController {
+	
+	//当未指明请求方法时，则所有的方法都可以请求
+	@RequestMapping(value = "/nomethod")
+	public Result nomethod() {
+		return Result.success();
+	}
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public Result index() {
@@ -43,6 +51,12 @@ public class TestController {
 	public long except(@RequestParam String name, @RequestParam long number) {
 		System.out.println("name:" + name + " number:" + number);
 		return 100 / number;
+	}
+	
+	@PostMapping(value = "/save/content")
+	public void post(@RequestBody HashMap<String, String> params) {
+		System.out.println(params);
+		
 	}
 
 }

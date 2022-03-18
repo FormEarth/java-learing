@@ -71,7 +71,7 @@ public class FileUtil {
 	 */
 	static void repeatedFileHandle(List<File> value) {
 		File repeatedFile = value.get(0);
-		System.out.println("first repeatd file:" + repeatedFile.exists());
+		System.out.println("first repeat file:" + repeatedFile.exists());
 		if (repeatedFile.delete()) {
 			System.out.println("已删除：" + value.get(0) + "\n");
 		}

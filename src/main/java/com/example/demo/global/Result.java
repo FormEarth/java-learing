@@ -1,7 +1,6 @@
 package com.example.demo.global;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 import com.example.demo.tool.MessageUtil;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -12,11 +11,9 @@ import lombok.Data;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Result {
 
-	private static transient DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-
 	private int code;
 	private String message;
-	private String time = formatter.format(LocalDateTime.now());
+	private String time = Common.DATE_FORMATTER.format(LocalDateTime.now());
 	private Object data;
 
 	public Result() {

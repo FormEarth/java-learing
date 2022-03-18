@@ -5,25 +5,28 @@ import java.util.Queue;
 
 public class SimpleTask extends Thread {
 
-    Queue<String> queue = new LinkedList<>();
+	Queue<String> queue = new LinkedList<>();
 
-    @Override
-    public void run() {
-        if (!queue.isEmpty()) {
-            String s = queue.poll();
-            try {
-                Thread.sleep(100);
-            } catch (InterruptedException ex) {
-                ex.printStackTrace();
-            }
+	@Override
+	public void run() {
+		sleep1(100);
+		while (!queue.isEmpty()) {
+			String s = queue.poll();
+			sleep1(100);
+			System.out.println(s + "-" + Thread.currentThread().getName());
+		}
+	}
 
-            System.out.println(s);
-        }
-    }
+	void put(String str) {
+		this.queue.add(str);
+	}
 
-    void put(String str) {
-        this.queue.add(str);
-    }
-
+	void sleep1(long num) {
+		try {
+			Thread.sleep(num);
+		} catch (InterruptedException ex) {
+			ex.printStackTrace();
+		}
+	}
 
 }

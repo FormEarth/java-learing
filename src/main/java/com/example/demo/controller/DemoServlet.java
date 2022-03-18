@@ -21,14 +21,14 @@ public class DemoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		
 		resp.getWriter().println(Util.MAPPER.writeValueAsString(Result.error().setMessage("GET is unsupported")));
 		resp.getWriter().flush();
 	}
 
 	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 //		String page = req.getParameter("page");
 		User user = Util.getBody(req, User.class);
 		System.out.println(user);

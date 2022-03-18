@@ -8,6 +8,7 @@ package com.example.demo.global;
 public enum MessageCode {
 
 	DEFAULT_SUCCESS(200),
+	NOT_FOUND(404),
 	DEFAULT_ERROR(500),
 	SERVER_REFUSE(501)
 	;

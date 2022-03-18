@@ -1,7 +1,5 @@
 package com.example.demo.entity;
 
-import java.io.Serializable;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -11,12 +9,17 @@ import lombok.EqualsAndHashCode;
 @AllArgsConstructor
 public class User extends BaseEntity  {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 	private String name;
 	private String password;
 	private String mail;
+	private Boolean gender;
 	
+	public User() {
+		
+	}
+	
+	public User(String name,Boolean gender) {
+		this.name = name;
+		this.gender = gender;
+	}
 }

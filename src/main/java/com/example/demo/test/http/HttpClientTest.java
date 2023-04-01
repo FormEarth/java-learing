@@ -1,20 +1,14 @@
 package com.example.demo.test.http;
 
 import org.apache.http.HttpEntity;
-import org.apache.http.HttpHost;
-import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.client.utils.HttpClientUtils;
-import org.apache.http.entity.ContentType;
 import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.protocol.BasicHttpContext;
-import org.apache.http.protocol.ExecutionContext;
 import org.apache.http.protocol.HttpContext;
 import org.apache.http.util.EntityUtils;
 import org.jsoup.Jsoup;
@@ -23,6 +17,8 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -71,11 +67,23 @@ public class HttpClientTest {
      *
      * @param uri
      */
-    public static void getTitle(String uri) {
-
+    public static void getTitle(String uri) throws IOException {
+//        Jsoup.connect(uri).get();
         Document document = Jsoup.parse(getHTML(uri));
         //像js一样，通过标签获取title
-        System.out.println(document.getElementsByTag("title").first().text());
+        String title = document.getElementsByTag("title").first().text();
+        //获取shortcut icon
+
+        Element el = document.getElementsByAttributeValue("rel", "shortcut icon").first();
+        if(el == null) {
+            el = document.getElementsByAttributeValue("rel", "icon").first();
+        }
+        String shortcut_icon = null;
+        if(el != null) {
+            shortcut_icon = el.attr("href");
+        }
+        System.out.println(title);
+        System.out.println(shortcut_icon);
     }
 
     /**
@@ -130,9 +138,13 @@ public class HttpClientTest {
 
     }
 
-    public static void main(String[] args) {
-//        getTitle("https://www.cnblogs.com/sam-uncle/p/10922366.html");
+    public static void main(String[] args) throws MalformedURLException {
+        // https://fanyi.sogou.com/text
+        // https://www.cnblogs.com/sam-uncle/p/10922366.html
+//        getTitle("https://fanyi.sogou.com/text");
 //        getWeiboTop("https://s.weibo.com/top/summary");
-        getRealUrl("https://tophub.today/l?e=a2e5kXddit8oK39%2FJPlfO5Nzczrai8IS0jV1zAFytzPjw4WOK6qXGtDVV%2FXTzCnCN5trQYEZ55crOah9Gf5oOCG7QEIiLt9POKhaCelEUu3ZeU1VE%2BE%2B88ovWzvXKWWvz2wQ3lRJjY4P65GLRfd3J6aTq3c4BKSIwBG3JdsuBMrFa6n8DVnjsgys2JMoWBbfyA3tnxaMRLpkTjhbVYJaU60UqFxaKvSimga%2F1cKrxFWCKBC5y%2FvMrJ6hjFoEO50GimGQuhrpBehvH%2BhfrRTj");
+//        getRealUrl("https://tophub.today/l?e=a2e5kXddit8oK39%2FJPlfO5Nzczrai8IS0jV1zAFytzPjw4WOK6qXGtDVV%2FXTzCnCN5trQYEZ55crOah9Gf5oOCG7QEIiLt9POKhaCelEUu3ZeU1VE%2BE%2B88ovWzvXKWWvz2wQ3lRJjY4P65GLRfd3J6aTq3c4BKSIwBG3JdsuBMrFa6n8DVnjsgys2JMoWBbfyA3tnxaMRLpkTjhbVYJaU60UqFxaKvSimga%2F1cKrxFWCKBC5y%2FvMrJ6hjFoEO50GimGQuhrpBehvH%2BhfrRTj");
+        URL url = new URL("https://www.cnblogs.com/sam-uncle/p/10922366.html");
+        System.out.println(url.getHost());
     }
 }

@@ -22,7 +22,7 @@ public class Reflect {
 	}
 
 	/**
-	 * ��ȡָ��������������ԣ����������г���
+	 * 获取对象的所有属性
 	 * @param object
 	 * @return
 	 */
@@ -47,6 +47,12 @@ public class Reflect {
 		return fields;
 	}
 
+	/**
+	 * 对象转Map
+	 * @param obj
+	 * @return
+	 * @throws IllegalAccessException
+	 */
 	public static Map<String, Object> parseObject2Map(Object obj) throws IllegalAccessException {
 
 		Map<String, Object> map = new LinkedHashMap<String, Object>();

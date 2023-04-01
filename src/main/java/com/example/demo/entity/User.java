@@ -13,6 +13,7 @@ public class User extends BaseEntity  {
 	private String password;
 	private String mail;
 	private Boolean gender;
+	private Integer age;
 	
 	public User() {
 		
@@ -22,4 +23,11 @@ public class User extends BaseEntity  {
 		this.name = name;
 		this.gender = gender;
 	}
+	
+	public User(String name,Boolean gender, Integer age) {
+		this.age = age;
+		this.name = name;
+		this.gender = gender;
+	}
+	
 }

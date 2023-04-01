@@ -1,0 +1,6 @@
+这段配置结合文章开头的配置，假设为development环境打包：
+命令如下：
+mvn clean package -Pdevelopment（利用id=development的profile配置打包）
+
+${profiles.active}会被替换为development，maven会根据中设定的规则从src/main/profile/development目录下筛选出文件打包到classpath下，并把需要过滤的文件（true）中的${app_name}使用dev_app替换，其他占位符同理。利用这种特性也可以实现各种不同环境的自动切换，只要在打包时指定使用哪个profile即可：
+mvn clean package -Pdevelopment

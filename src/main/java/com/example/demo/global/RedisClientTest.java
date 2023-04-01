@@ -40,7 +40,7 @@ public class RedisClientTest {
 		redisTemplate.setKeySerializer(new StringRedisSerializer());
 		ValueOperations<String, User> operations = redisTemplate.opsForValue();
 
-		User user = new User("jack", null, "jack@qq.com",null);
+		User user = new User("jack", true);
 		String token = getToken();
 		operations.set("user.basic.info." + token, user);
 		// operations.set("user.basic.info." + token, user, 30, TimeUnit.MINUTES);
@@ -76,7 +76,7 @@ public class RedisClientTest {
 	}
 
 	User getUser() {
-		return new User("jack", null, "jack@qq.com",null);
+		return new User("jack", true);
 	}
 
 	Map<String, Object> getMap() {

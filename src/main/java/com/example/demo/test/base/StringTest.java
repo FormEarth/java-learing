@@ -1,5 +1,8 @@
 package com.example.demo.test.base;
 
+import com.example.demo.test.util.Util;
+import org.jetbrains.annotations.NotNull;
+
 import java.lang.reflect.Field;
 
 public class StringTest {
@@ -52,12 +55,37 @@ public class StringTest {
 		}
 	}
 
+	// 将下划线风格的字符串转为驼峰风格
+	public static String underlineToCamel(@NotNull String str) {
+
+		StringBuilder sb = new StringBuilder();
+		String[] words = str.split("_");
+		for (int i = 0; i < words.length; i++) {
+			String word = words[i];
+			if (i == 0) {
+				sb.append(word);
+			} else {
+				sb.append(Character.toUpperCase(word.charAt(0)));
+				sb.append(word.substring(1));
+			}
+		}
+		System.out.println(sb);
+		return sb.toString();
+	}
+
+
 	public static void main(String[] args) {
-		String a = "A";
-		String b = "B";
-//		swap(a, b);
-		realSwap(a, b);
-		System.out.println(String.format("%s,%s", a, b));
+//		String a = "A";
+//		String b = "B";
+////		swap(a, b);
+//		realSwap(a, b);
+//		System.out.println(String.format("%s,%s", a, b));
+//		String str = "op=1&sn=SN000222&pakgesum=3&index=1&datalen=1046&data=7889";
+//		int i = str.lastIndexOf("=");
+//		System.out.println(str.substring(i));
+//		System.out.println(str.substring(i));
+
+		underlineToCamel("rtte_hgrh");
 	}
 
 }

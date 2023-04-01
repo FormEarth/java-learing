@@ -12,11 +12,11 @@ public class SpringDemo {
 	void startContext() {
 		
 		// 基于配置类启动spring容器
-		AnnotationConfigApplicationContext context = 
-				new AnnotationConfigApplicationContext(Config.class);
+//		AnnotationConfigApplicationContext context =
+//				new AnnotationConfigApplicationContext(Config.class);
 		// 基于配置文件启动spring容器
-//		ClassPathXmlApplicationContext context = 
-//				new ClassPathXmlApplicationContext("classpath:/com/example/demo/test/spring/spring-config.xml");
+		ClassPathXmlApplicationContext context =
+				new ClassPathXmlApplicationContext("classpath:/com/example/demo/test/spring/spring-config.xml");
 		context.start();
 		ConfigurableListableBeanFactory beanFactory = context.getBeanFactory();
 		System.out.println(beanFactory.getBean("user"));

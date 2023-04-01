@@ -7,6 +7,7 @@ import java.time.LocalDateTime;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.example.demo.test.util.Util;
 import org.apache.commons.io.IOUtils;
 import org.apache.logging.log4j.util.Strings;
 import org.slf4j.Logger;
@@ -15,7 +16,7 @@ import org.springframework.web.util.ContentCachingRequestWrapper;
 import org.springframework.web.util.ContentCachingResponseWrapper;
 import org.springframework.web.util.WebUtils;
 
-import com.example.demo.tool.Util;
+import com.example.demo.tool.RequestUtil;
 
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
@@ -37,9 +38,10 @@ public class SystemLog {
 	private LocalDateTime endTime;
 	private Long duration;
 	private String ip;
+	private Integer httpStatus;
 
 	private transient String requestBodyStr;
-	private transient String reponseBodyStr;
+	private transient String responseBodyStr;
 	private transient StringBuilder consoleLog;
 
 	public SystemLog(HttpServletRequest request, HttpServletResponse response, LocalDateTime startTime,
@@ -51,8 +53,9 @@ public class SystemLog {
 		this.endTime = endTime;
 		this.duration = Duration.between(startTime, endTime).toMillis();
 		this.ip = request.getRemoteHost();
+		this.httpStatus = response.getStatus();
 		this.requestBodyStr = getRequestBody(request);
-		this.reponseBodyStr = getResponseBody(response);
+		this.responseBodyStr = getResponseBody(response);
 	}
 
 	/**
@@ -72,11 +75,11 @@ public class SystemLog {
 
 		if (consoleLog == null) {
 			consoleLog = new StringBuilder();
-			consoleLog.append(this.id + "-[url][" + this.method + "] " + this.url
-					+ (Strings.isEmpty(this.queryString) ? "" : "?" + this.queryString)).append("\n");
-			consoleLog.append(this.id + "-[request] " + this.requestBodyStr).append("\n");
-			consoleLog.append(this.id + "-[response] " + this.reponseBodyStr).append("\n");
-			consoleLog.append(this.id + String.format("-[timer] begin_time: %s,end_time: %s,spend: %sms", startTime,
+			consoleLog.append(this.id).append("\n");
+			consoleLog.append("[").append(this.method.toLowerCase()).append("][url] ").append(this.url).append(Strings.isEmpty(this.queryString) ? "" : "?" + this.queryString).append("\n");
+			consoleLog.append("[request body] ").append(this.requestBodyStr).append("\n");
+			consoleLog.append("[response body] ").append(this.responseBodyStr).append("\n");
+			consoleLog.append(String.format("[timer] begin_time: %s,end_time: %s,spend: %sms", startTime,
 					endTime, this.duration));
 		}
 
@@ -90,7 +93,7 @@ public class SystemLog {
 			return true;
 		}
 		// 非application/json请求
-		if (!request.getContentType().toLowerCase().contains("application/json")) {
+		if (request.getContentType() != null && !request.getContentType().toLowerCase().contains("application/json")) {
 			return true;
 		}
 		return false;
@@ -117,7 +120,7 @@ public class SystemLog {
 				requestBody = IOUtils.toString(wrapper.getContentAsByteArray(), "utf-8");
 			} catch (IOException e) {
 				// NOOP
-				log.error("get requestbody failed", e);
+				log.error("get request body failed", e);
 			}
 		}
 		return requestBody;

@@ -7,14 +7,21 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 
 import lombok.Data;
 
+/**
+ * Response的统一的返回对象
+ * @param <T>
+ */
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class Result {
+public class Result<T> {
 
 	private int code;
 	private String message;
-	private String time = Common.DATE_FORMATTER.format(LocalDateTime.now());
-	private Object data;
+//	private String time = Common.DATE_FORMATTER.format(LocalDateTime.now());
+//	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
+//	@DateTimeFormat
+	private LocalDateTime time = LocalDateTime.now();
+	private T data;
 
 	public Result() {
 
@@ -22,8 +29,8 @@ public class Result {
 
 	/**
 	 * 
-	 * @param code
-	 * @param message
+	 * @param code 响应码
+	 * @param message 响应信息
 	 * @deprecated
 	 */
 	public Result(int code, String message) {
@@ -36,25 +43,24 @@ public class Result {
 		this.message = MessageUtil.get(String.valueOf(this.code));
 	}
 
-	public static Result success() {
-		return new Result(MessageCode.DEFAULT_SUCCESS);
+	public static <T> Result<T> success() {
+		return new Result<>(MessageCode.DEFAULT_SUCCESS);
 	}
 
-	public static Result error() {
-		return new Result(MessageCode.DEFAULT_ERROR);
+	public static Result<?> error() {
+		return new Result<>(MessageCode.DEFAULT_ERROR);
 	}
 
-	public Result setCode(int code) {
-		this.code = code;
-		return this;
+	public static <T> Result<T> of(MessageCode code) {
+		return new Result<>(code);
 	}
 
-	public Result setMessage(String message) {
+	public Result<?> setMessage(String message) {
 		this.message = message;
 		return this;
 	}
 
-	public Result setData(Object data) {
+	public Result<T> setData(T data) {
 		this.data = data;
 		return this;
 	}

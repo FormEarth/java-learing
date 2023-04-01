@@ -3,6 +3,7 @@ package com.example.demo.test;
 import java.io.File;
 import java.io.IOException;
 
+import com.example.demo.global.MessageCode;
 import com.example.demo.global.Result;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -17,7 +18,7 @@ public class JacksonTest {
 		Result result = mapper.readValue(string, Result.class);
 		System.out.println(result);
 		
-		Result result1 = new Result(602,"无效的token信息");
+		Result<String> result1 = Result.of(MessageCode.DEFAULT_ERROR);
 //		System.out.println(mapper.writeValueAsString(result1));
 		//{"code":602,"message":"无效的token信息","time":"2021-09-14 11:36:06"}
 		

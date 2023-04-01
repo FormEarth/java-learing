@@ -16,6 +16,10 @@ public class NoImplHandler implements InvocationHandler {
 	public Object instance(String str) throws IOException, ClassNotFoundException {
 
 		InputStream in = Subject.class.getResourceAsStream("proxy.txt");
+		if(in == null) {
+			System.out.println("proxy.txt is not exist");
+			return null;
+		}
 		BufferedReader reader = new BufferedReader(new InputStreamReader(in));
 		if (reader.ready()) {
 			String line = null;
@@ -48,7 +52,9 @@ public class NoImplHandler implements InvocationHandler {
 	public static void main(String[] args) throws IOException, ClassNotFoundException {
 
 		Subject subject = (Subject) new NoImplHandler().instance(null);
-		System.out.println(subject.doFirst());
+		if(subject!= null) {
+			System.out.println(subject.doFirst());
+		}
 		
 	}
 

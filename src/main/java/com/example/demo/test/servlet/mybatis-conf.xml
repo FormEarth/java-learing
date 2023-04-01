@@ -7,16 +7,19 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	<environments default="development">
 		<environment id="development">
 			<transactionManager type="JDBC"></transactionManager>
+<!--			UNPOOLED：不带连接池的数据源。-->
+<!--			POOLED ： 带连接池的数据源， 在PooledDataSource 中维护PooledConnection。PooledDataSource 的getConnection()方法流程图：-->
+<!--			JNDI：使用容器的数据源，比如Tomcat 配置了C3P0。-->
 			<dataSource type="POOLED">
 				<property name="driver" value="com.mysql.jdbc.Driver"/>
-				<property name="url" value="jdbc:mysql://localhost:3306/order"/>
+				<property name="url" value="jdbc:mysql://192.168.0.36:3306/iot-nms"/>
 				<property name="username" value="root"/>
-				<property name="password" value="123456"/>
+				<property name="password" value="Jason0323."/>
 			</dataSource>
 		</environment>
 	</environments>
 	
 	<mappers>
-		<package name="com.huel.servlet"/>
+		<package name="com.example.demo.test.db"/>
 	</mappers>
 </configuration>

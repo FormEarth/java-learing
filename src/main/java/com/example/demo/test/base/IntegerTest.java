@@ -1,5 +1,7 @@
 package com.example.demo.test.base;
 
+import java.util.Objects;
+
 /**
  * 包装类型
  * @author raining_heavily
@@ -62,5 +64,7 @@ public class IntegerTest {
     	
     	String indexStr = ((1-1)<<4) + 1 + "";
     	System.out.println(indexStr);
+
+        System.out.println(Objects.equals(new Integer(1), 1));
     }
 }

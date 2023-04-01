@@ -14,11 +14,11 @@ import java.util.regex.Pattern;
 public class RegexTest {
 	
     //6-10位数字或字母
-    private static String NumberAndLetter = "[0-9a-zA-Z]{6,10}";
+    private static final String NumberAndLetter = "[0-9a-zA-Z]{6,10}";
     
-    private static String SimplePassword = "[0-9a-zA-Z,_@.]{6,20}";
+    private static final String SimplePassword = "[0-9a-zA-Z,_@.]{6,20}";
     //中文
-    private static String CHINESE = "[\\u4e00-\\u9fa5]";
+    private static final String CHINESE = "[\\u4e00-\\u9fa5]";
 
     //是否匹配
     public static boolean isMatch(String str) {

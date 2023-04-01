@@ -1,7 +1,6 @@
 package com.example.demo.tool;
 
 import java.io.IOException;
-import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -20,7 +19,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class Util {
+public class RequestUtil {
 
 	public static final ObjectMapper MAPPER = new ObjectMapper()
 			.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
@@ -87,10 +86,6 @@ public class Util {
 			}
 		}
 		return object;
-	}
-	
-	public static String uuid() {
-		return UUID.randomUUID().toString().replaceAll("-", "").toLowerCase();
 	}
 
 	public static void main(String[] args) {

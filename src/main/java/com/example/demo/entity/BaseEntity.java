@@ -12,4 +12,5 @@ public class BaseEntity {
 	private LocalDateTime createTime;
 	private LocalDateTime updateTime;
 	private Integer delFlag;
+	private String id;
 }

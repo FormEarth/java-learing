@@ -1,5 +1,7 @@
 package com.example.demo.test.io;
 
+import org.apache.commons.io.FileUtils;
+
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.File;
@@ -9,6 +11,9 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.util.List;
 
 public class ReaderWriter {
 
@@ -20,11 +25,10 @@ public class ReaderWriter {
 	void fileReader() throws IOException {
 		// FileReader extens InputStreamReader
 		FileReader reader = new FileReader(file_gbk);
-		int temp = 0; // ����ÿһ������
-		int len = 0; // ��ȡ����
+		int temp = 0;
+		int len = 0;
 		char[] c = new char[1024];
 		while ((temp = reader.read()) != -1) {
-			// �������-1�ͱ�ʾ�������ݣ����Լ�����ȡ
 			c[len] = (char) temp;
 			len++;
 		}
@@ -42,9 +46,13 @@ public class ReaderWriter {
 		}
 		reader.close();
 	}
+
+	void tyy() throws IOException {
+		List<String> list = FileUtils.readLines(file_utf8, StandardCharsets.UTF_8);
+	}
 	
 	void bufferedReader_1() throws IOException {
-		BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(file_utf8), "utf-8"));
+		BufferedReader reader = new BufferedReader(new InputStreamReader(Files.newInputStream(file_utf8.toPath()), StandardCharsets.UTF_8));
 		if (reader.ready()) {
 			String line;
 			while ((line = reader.readLine()) != null) {

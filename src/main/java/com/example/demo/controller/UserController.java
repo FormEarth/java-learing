@@ -12,8 +12,8 @@ import lombok.extern.slf4j.Slf4j;
 @RestController
 public class UserController {
 
-	@PostMapping(value = "/user/login", name = "登录")
-	void login(@RequestBody User user) {
-		log.info(user.toString());
-	}
+//	@PostMapping(value = "/user/login", name = "登录")
+//	void login(@RequestBody User user) {
+//		log.info(user.toString());
+//	}
 }

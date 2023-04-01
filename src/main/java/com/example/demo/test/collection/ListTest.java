@@ -133,12 +133,43 @@ public class ListTest {
         System.out.println(list);
         System.out.println(list_clone);
     }
+    
+    private static void splitData() {
+    	HashMap<String, Object> mibs = new HashMap<String, Object>();
+		mibs.put("MIB_SYS_TIME", "2022-04-11 22:34:23");
+		mibs.put("MIB_SYS_TIME_SOURCE", 0);
+		mibs.put("MIB_SYS_NTP_SERVER_ADDR", "127.0.0.1");
+		mibs.put("MIB_SYS_TIMEZONE", "UTC");
+		mibs.put("MIB_SYS_VERIFY", "123456");
+		mibs.put("MIB_MONITOR_SN", "MS000001");
+		mibs.put("MIB_MONITOR_HV", "v12.343.33");
+		mibs.put("MIB_MON_TEMP_OFFSET", 25);
+		String fixedString = "INSTRUCT_GET#SN00001#123456#0#1#";
+		ArrayList<String> list = new ArrayList<>(mibs.keySet());
+		int size = list.size();
+//		if() {
+//			
+//		}
+    }
+
+    /**
+     *
+     */
+    private static void listToArray() {
+        List<String> list = new ArrayList<>();
+        list.add("A");
+        list.add("B");
+        list.add("C");
+        String[] array = list.toArray(new String[1]);
+        System.out.println(Arrays.asList(array));
+    }
 
     public static void main(String[] args) {
         // listSort1();
         //listSort2();
 //        listRemove();
 //        removeRepeat();
-        cloneList();
+//        cloneList();
+        listToArray();
     }
 }

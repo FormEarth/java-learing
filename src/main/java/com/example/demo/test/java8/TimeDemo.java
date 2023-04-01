@@ -1,13 +1,8 @@
 package com.example.demo.test.java8;
 
-import java.time.Duration;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
+import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
-
-import org.jetbrains.annotations.NotNull;
 
 import com.example.demo.global.Common;
 
@@ -20,13 +15,23 @@ import com.example.demo.global.Common;
  */
 public class TimeDemo {
 
+    static void basic() {
+        LocalDateTime min = LocalDateTime.of(LocalDate.now(), LocalTime.MIN);
+        LocalDateTime max = LocalDateTime.of(LocalDate.now(), LocalTime.MAX);
+        System.out.println(min + "," + max);
+        String string = "2021-09-06 15:53:20";
+        LocalDate date = LocalDate.parse(string.substring(0, 10), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        System.out.println(string.substring(0, 10));
+        System.out.println(date);
+    }
+
     /**
      * LocalDateTime -> Date
      *
      * @param time
      * @return
      */
-    static Date getDate(@NotNull LocalDateTime time) {
+    static Date getDate(LocalDateTime time) {
         return Date.from(time.atZone(ZoneId.systemDefault()).toInstant());
     }
 
@@ -36,7 +41,7 @@ public class TimeDemo {
      * @param date
      * @return
      */
-    static LocalDateTime getLocalDateTime(@NotNull Date date) {
+    static LocalDateTime getLocalDateTime(Date date) {
         return date.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
     }
 
@@ -53,7 +58,6 @@ public class TimeDemo {
     /**
      * LocalDateTime常用计算
      *
-     * @return
      */
     static void computeLocalDateTime() {
 
@@ -88,11 +92,13 @@ public class TimeDemo {
         hour = i / 3600;
         minute = (i - hour * 3600) / 60;
         second = (i - hour * 3600) % 60;
-        System.out.println(String.format("%s %s %s", hour, minute, second));
+        System.out.printf("%s %s %s%n", hour, minute, second);
     }
 
     public static void main(String[] args) {
-        compute();
+//        compute();
+        basic();
+
     }
 
 }

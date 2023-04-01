@@ -58,4 +58,8 @@ public class Timer {
 		Duration duration = Duration.between(begin, end);
 		return duration.toMillis();
 	}
+
+	public static void main(String[] args) {
+		System.out.println(4%3);
+	}
 }

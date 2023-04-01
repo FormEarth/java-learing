@@ -1,15 +1,14 @@
 package com.example.demo;
 
-import javax.annotation.Resource;
-
-import org.testng.annotations.Test;
+import com.example.demo.controller.TestController;
+import com.example.demo.global.RedisClientTest;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.example.demo.controller.TestController;
-import com.example.demo.global.RedisClientTest;
+import javax.annotation.Resource;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest

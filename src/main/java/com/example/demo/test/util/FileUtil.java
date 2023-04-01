@@ -34,6 +34,7 @@ public class FileUtil {
 		HashMap<String, List<File>> md5Map = new HashMap<>();
 		File[] files = file.listFiles();
 		System.out.println("staring check……");
+		assert files != null;
 		for (File temp : files) {
 			String absolutePath = temp.getAbsolutePath();
 			String md5 = "";

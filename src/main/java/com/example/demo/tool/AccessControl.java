@@ -21,13 +21,18 @@ import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandl
 import com.example.demo.entity.SystemInterface;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-//@Component
+/**
+ * 获取项目内的所有接口信息
+ * @author raining_heavily
+ * @date 2023/3/6 11:45
+ */
+@Component
 public class AccessControl {
 
 	private final static ObjectMapper mapper = new ObjectMapper();
 
 	@Autowired
-	WebApplicationContext applicationContext;
+	private WebApplicationContext applicationContext;
 
 	public @PostConstruct void apiCheck() {
 
@@ -36,6 +41,7 @@ public class AccessControl {
 		Map<RequestMappingInfo, HandlerMethod> methodMap = mapping.getHandlerMethods();
 		List<SystemInterface> apis = new ArrayList<>();
 		for (RequestMappingInfo info : methodMap.keySet()) {
+			assert info.getPatternsCondition() != null;
 			Set<String> urlSet = info.getPatternsCondition().getPatterns();
 			if (urlSet.size() > 0) {
 				ArrayList<String> list = new ArrayList<>(urlSet);

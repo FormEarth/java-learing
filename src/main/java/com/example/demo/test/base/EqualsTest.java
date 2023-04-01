@@ -8,7 +8,7 @@ import com.example.demo.test.entity.User;
 /**
  * @author raining_heavily
  * @date 2021/10/19 22:34
- **/
+ */
 public class EqualsTest {
     public static void main(String[] args) {
         User user = new User();

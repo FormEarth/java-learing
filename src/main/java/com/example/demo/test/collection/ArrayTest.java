@@ -51,7 +51,11 @@ public class ArrayTest {
 //        systemArrayCopy();
         int[] a = new int[10];
         a = new int[]{1,2,3,4};
-        System.arraycopy(a, 2, a, 3, 3);
-        System.out.println(Arrays.toString(a));
+//        System.arraycopy(a, 2, a, 3, 3);
+//        System.out.println(Arrays.toString(a));
+        
+        String str = "中国";
+        System.out.println(str.getBytes().length);
+        System.out.println(str.length());
     }
 }
